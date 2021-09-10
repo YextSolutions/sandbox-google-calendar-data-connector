@@ -168,7 +168,7 @@
       "subfieldPath": []
     },
     {
-      "field": "c_startTimeAllDay1",
+      "field": "c_startTimeAllDay",
       "header": "Start Time All Day",
       "subfieldPath": []
     },
