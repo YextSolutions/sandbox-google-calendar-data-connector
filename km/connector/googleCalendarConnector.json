@@ -179,12 +179,6 @@
         "newColumnHeader": "Combined End Time",
         "delimiter": ""
       }
-    },
-    {
-      "addColumn": {
-        "newColumnHeader": "LocationId",
-        "columnValue": "717201529278661080"
-      }
     }
   ],
   "mappings": [
