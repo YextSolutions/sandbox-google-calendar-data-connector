@@ -120,11 +120,40 @@
   },
   "transforms": [
     {
+      "extractText": {
+        "inputHeader": "Start Time - Date",
+        "newColumnHeader": "Start Time - Date - Formatted",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "OFFSET_FROM_BEGINNING",
+        "offsetLength": 10
+      }
+    },
+    {
+      "extractText": {
+        "inputHeader": "Start Time All Day",
+        "newColumnHeader": "Start Time All Day - Formatted",
+        "extractOperation": "ALL_TEXT_AFTER",
+        "extractFrom": "OFFSET_FROM_BEGINNING",
+        "offsetLength": 0
+      }
+    },
+    {
+      "extractText": {
+        "inputHeader": "End Time All Day",
+        "newColumnHeader": "End Time All Day - Formatted",
+        "extractOperation": "ALL_TEXT_AFTER",
+        "extractFrom": "OFFSET_FROM_BEGINNING",
+        "offsetLength": 0
+      }
+    },
+    {
       "function": {
         "inputHeaders": {
           "headers": [
             "Start Time",
-            "End Time"
+            "End Time",
+            "Start Time All Day - Formatted",
+            "End Time All Day - Formatted"
           ]
         },
         "plugin": "formatDates",
@@ -132,12 +161,29 @@
       }
     },
     {
-      "extractText": {
-        "inputHeader": "Start Time - Date",
-        "newColumnHeader": "Start Time - Date - Formatted",
-        "extractOperation": "ALL_TEXT_BEFORE",
-        "extractFrom": "OFFSET_FROM_BEGINNING",
-        "offsetLength": 10
+      "mergeColumns": {
+        "inputHeaders": [
+          "Start Time",
+          "Start Time All Day - Formatted"
+        ],
+        "newColumnHeader": "Combined Start Time",
+        "delimiter": ""
+      }
+    },
+    {
+      "mergeColumns": {
+        "inputHeaders": [
+          "End Time",
+          "End Time All Day - Formatted"
+        ],
+        "newColumnHeader": "Combined End Time",
+        "delimiter": ""
+      }
+    },
+    {
+      "addColumn": {
+        "newColumnHeader": "LocationId",
+        "columnValue": "717201529278661080"
       }
     }
   ],
@@ -153,6 +199,15 @@
       "subfieldPath": []
     },
     {
+      "field": "yext/time",
+      "header": "Combined Start Time",
+      "subfieldPath": [
+        {
+          "name": "start"
+        }
+      ]
+    },
+    {
       "field": "yext/name",
       "header": "Event Name",
       "subfieldPath": []
@@ -160,6 +215,11 @@
     {
       "field": "c_color",
       "header": "Color",
+      "subfieldPath": []
+    },
+    {
+      "field": "linkedLocation",
+      "header": "LocationId",
       "subfieldPath": []
     },
     {
@@ -174,21 +234,21 @@
     },
     {
       "field": "yext/time",
-      "header": "Start Time",
+      "header": "Combined End Time",
       "subfieldPath": [
         {
-          "name": "start"
+          "name": "end"
         }
       ]
     },
     {
-      "field": "c_endTimeAllDay",
-      "header": "End Time All Day",
+      "field": "c_meetingPhoneNumber",
+      "header": "Conference Phone Number",
       "subfieldPath": []
     },
     {
-      "field": "c_meetingPhoneNumber",
-      "header": "Conference Phone Number",
+      "field": "c_endTimeAllDay",
+      "header": "End Time All Day",
       "subfieldPath": []
     },
     {
@@ -240,15 +300,6 @@
       "field": "yext/venueName",
       "header": "Location",
       "subfieldPath": []
-    },
-    {
-      "field": "yext/time",
-      "header": "End Time",
-      "subfieldPath": [
-        {
-          "name": "end"
-        }
-      ]
     }
   ],
   "scheduleConfig": {
