@@ -212,11 +212,6 @@
       "subfieldPath": []
     },
     {
-      "field": "linkedLocation",
-      "header": "LocationId",
-      "subfieldPath": []
-    },
-    {
       "field": "c_startTimezone",
       "header": "Start Timezone",
       "subfieldPath": []
