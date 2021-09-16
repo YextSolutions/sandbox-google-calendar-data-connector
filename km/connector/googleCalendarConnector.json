@@ -53,11 +53,6 @@
       },
       {
         "type": "JSON",
-        "header": "Start Time - Date",
-        "path": "start.dateTime"
-      },
-      {
-        "type": "JSON",
         "header": "Description",
         "path": "description"
       },
@@ -94,7 +89,7 @@
       {
         "type": "JSON",
         "header": "Conference Type",
-        "path": "conferenceSolution.name"
+        "path": "conferenceData.conferenceSolution.name"
       },
       {
         "type": "JSON",
@@ -108,26 +103,12 @@
       },
       {
         "type": "JSON",
-        "header": "Start Timezone",
+        "header": "Time Zone",
         "path": "start.timeZone"
-      },
-      {
-        "type": "JSON",
-        "header": "End Timezone",
-        "path": "end.timeZone"
       }
     ]
   },
   "transforms": [
-    {
-      "extractText": {
-        "inputHeader": "Start Time - Date",
-        "newColumnHeader": "Start Time - Date - Formatted",
-        "extractOperation": "ALL_TEXT_BEFORE",
-        "extractFrom": "OFFSET_FROM_BEGINNING",
-        "offsetLength": 10
-      }
-    },
     {
       "extractText": {
         "inputHeader": "Start Time All Day",
@@ -183,11 +164,6 @@
   ],
   "mappings": [
     {
-      "field": "c_endTimezone",
-      "header": "End Timezone",
-      "subfieldPath": []
-    },
-    {
       "field": "yext/description",
       "header": "Description",
       "subfieldPath": []
@@ -212,11 +188,6 @@
       "subfieldPath": []
     },
     {
-      "field": "c_startTimezone",
-      "header": "Start Timezone",
-      "subfieldPath": []
-    },
-    {
       "field": "c_startTimeAllDay",
       "header": "Start Time All Day",
       "subfieldPath": []
@@ -238,11 +209,6 @@
     {
       "field": "c_endTimeAllDay",
       "header": "End Time All Day",
-      "subfieldPath": []
-    },
-    {
-      "field": "c_startTimeFormatted",
-      "header": "Start Time - Date - Formatted",
       "subfieldPath": []
     },
     {
@@ -288,6 +254,11 @@
     {
       "field": "yext/venueName",
       "header": "Location",
+      "subfieldPath": []
+    },
+    {
+      "field": "yext/timezone",
+      "header": "Time Zone",
       "subfieldPath": []
     }
   ],
