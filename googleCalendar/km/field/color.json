@@ -1,0 +1,13 @@
+{
+  "$id": "googleCalendar_color",
+  "$schema": "https://schema.yext.com/config/km/field/v1",
+  "displayName": "Color",
+  "group": "NONE",
+  "localization": "PRIMARY_ONLY",
+  "type": {
+    "stringType": {
+      "stereotype": "SIMPLE"
+    }
+  },
+  "typeId": "yext/string"
+}
