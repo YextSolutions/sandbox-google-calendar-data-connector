@@ -2,7 +2,7 @@
   "$id": "googleCalendar_connector",
   "$schema": "https://schema.yext.com/config/km/connector/v1",
   "displayName": "Google Calendar Connector",
-  "entityType": "yext/event",
+  "entityType": "event",
   "source": {
     "sourceConfig": {
       "apiPushConfig": {
@@ -164,12 +164,12 @@
   ],
   "mappings": [
     {
-      "field": "yext/description",
+      "field": "description",
       "header": "Description",
       "subfieldPath": []
     },
     {
-      "field": "yext/time",
+      "field": "time",
       "header": "Combined Start Time",
       "subfieldPath": [
         {
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "field": "yext/name",
+      "field": "name",
       "header": "Event Name",
       "subfieldPath": []
     },
@@ -193,7 +193,7 @@
       "subfieldPath": []
     },
     {
-      "field": "yext/time",
+      "field": "time",
       "header": "Combined End Time",
       "subfieldPath": [
         {
@@ -217,17 +217,17 @@
       "subfieldPath": []
     },
     {
-      "field": "yext/organizerEmail",
+      "field": "organizerEmail",
       "header": "Organizer Email",
       "subfieldPath": []
     },
     {
-      "field": "yext/landingPageUrl",
+      "field": "landingPageUrl",
       "header": "Event Link",
       "subfieldPath": []
     },
     {
-      "field": "yext/entityId",
+      "field": "entityId",
       "header": "Entity ID",
       "subfieldPath": []
     },
@@ -247,17 +247,17 @@
       "subfieldPath": []
     },
     {
-      "field": "yext/organizerName",
+      "field": "organizerName",
       "header": "Organizer Name",
       "subfieldPath": []
     },
     {
-      "field": "yext/venueName",
+      "field": "venueName",
       "header": "Location",
       "subfieldPath": []
     },
     {
-      "field": "yext/timezone",
+      "field": "timezone",
       "header": "Time Zone",
       "subfieldPath": []
     }
