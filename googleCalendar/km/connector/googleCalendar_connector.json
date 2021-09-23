@@ -183,12 +183,12 @@
       "subfieldPath": []
     },
     {
-      "field": "c_color",
+      "field": "googleCalendar_color",
       "header": "Color",
       "subfieldPath": []
     },
     {
-      "field": "c_startTimeAllDay",
+      "field": "googleCalendar_startTimeAllDay",
       "header": "Start Time All Day",
       "subfieldPath": []
     },
@@ -202,17 +202,17 @@
       ]
     },
     {
-      "field": "c_meetingPhoneNumber",
+      "field": "googleCalendar_meetingPhoneNumber",
       "header": "Conference Phone Number",
       "subfieldPath": []
     },
     {
-      "field": "c_endTimeAllDay",
+      "field": "googleCalendar_endTimeAllDay",
       "header": "End Time All Day",
       "subfieldPath": []
     },
     {
-      "field": "c_creatorEmail",
+      "field": "googleCalendar_creatorEmail",
       "header": "Creator Email",
       "subfieldPath": []
     },
@@ -232,17 +232,17 @@
       "subfieldPath": []
     },
     {
-      "field": "c_creatorName",
+      "field": "googleCalendar_creatorName",
       "header": "Creator Name",
       "subfieldPath": []
     },
     {
-      "field": "c_meetingType",
+      "field": "googleCalendar_meetingType",
       "header": "Conference Type",
       "subfieldPath": []
     },
     {
-      "field": "c_meetingLink",
+      "field": "googleCalendar_meetingLink",
       "header": "Conference Link",
       "subfieldPath": []
     },
