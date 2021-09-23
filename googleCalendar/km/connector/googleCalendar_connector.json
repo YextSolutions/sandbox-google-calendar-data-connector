@@ -188,11 +188,6 @@
       "subfieldPath": []
     },
     {
-      "field": "googleCalendar_startTimeAllDay",
-      "header": "Start Time All Day",
-      "subfieldPath": []
-    },
-    {
       "field": "time",
       "header": "Combined End Time",
       "subfieldPath": [
@@ -204,11 +199,6 @@
     {
       "field": "googleCalendar_meetingPhoneNumber",
       "header": "Conference Phone Number",
-      "subfieldPath": []
-    },
-    {
-      "field": "googleCalendar_endTimeAllDay",
-      "header": "End Time All Day",
       "subfieldPath": []
     },
     {
