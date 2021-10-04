@@ -110,21 +110,9 @@
   },
   "transforms": [
     {
-      "extractText": {
-        "inputHeader": "Start Time All Day",
-        "newColumnHeader": "Start Time All Day - Formatted",
-        "extractOperation": "ALL_TEXT_AFTER",
-        "extractFrom": "OFFSET_FROM_BEGINNING",
-        "offsetLength": 0
-      }
-    },
-    {
-      "extractText": {
-        "inputHeader": "End Time All Day",
-        "newColumnHeader": "End Time All Day - Formatted",
-        "extractOperation": "ALL_TEXT_AFTER",
-        "extractFrom": "OFFSET_FROM_BEGINNING",
-        "offsetLength": 0
+      "addColumn": {
+        "newColumnHeader": "Midnight Timestamp",
+        "columnValue": "T00:00"
       }
     },
     {
@@ -132,9 +120,7 @@
         "inputHeaders": {
           "headers": [
             "Start Time",
-            "End Time",
-            "Start Time All Day - Formatted",
-            "End Time All Day - Formatted"
+            "End Time"
           ]
         },
         "plugin": "formatDates",
@@ -145,9 +131,10 @@
       "mergeColumns": {
         "inputHeaders": [
           "Start Time",
-          "Start Time All Day - Formatted"
+          "Start Time All Day",
+          "Midnight Timestamp"
         ],
-        "newColumnHeader": "Combined Start Time",
+        "newColumnHeader": "Start Time All Day - Combined",
         "delimiter": ""
       }
     },
@@ -155,27 +142,42 @@
       "mergeColumns": {
         "inputHeaders": [
           "End Time",
-          "End Time All Day - Formatted"
+          "End Time All Day",
+          "Midnight Timestamp"
         ],
-        "newColumnHeader": "Combined End Time",
+        "newColumnHeader": "End Time All Day - Combined",
         "delimiter": ""
+      }
+    },
+    {
+      "extractText": {
+        "inputHeader": "Start Time All Day - Combined",
+        "newColumnHeader": "Start Time All Day - Formatted",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "OFFSET_FROM_BEGINNING",
+        "offsetLength": 16
+      }
+    },
+    {
+      "extractText": {
+        "inputHeader": "End Time All Day - Combined",
+        "newColumnHeader": "End Time All Day - Formatted",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "OFFSET_FROM_BEGINNING",
+        "offsetLength": 16
       }
     }
   ],
   "mappings": [
     {
-      "field": "description",
-      "header": "Description",
+      "field": "timezone",
+      "header": "Time Zone",
       "subfieldPath": []
     },
     {
-      "field": "time",
-      "header": "Combined Start Time",
-      "subfieldPath": [
-        {
-          "name": "start"
-        }
-      ]
+      "field": "description",
+      "header": "Description",
+      "subfieldPath": []
     },
     {
       "field": "name",
@@ -186,15 +188,6 @@
       "field": "googleCalendar_color",
       "header": "Color",
       "subfieldPath": []
-    },
-    {
-      "field": "time",
-      "header": "Combined End Time",
-      "subfieldPath": [
-        {
-          "name": "end"
-        }
-      ]
     },
     {
       "field": "googleCalendar_meetingPhoneNumber",
@@ -247,9 +240,22 @@
       "subfieldPath": []
     },
     {
-      "field": "timezone",
-      "header": "Time Zone",
-      "subfieldPath": []
+      "field": "time",
+      "header": "Start Time All Day - Formatted",
+      "subfieldPath": [
+        {
+          "name": "start"
+        }
+      ]
+    },
+    {
+      "field": "time",
+      "header": "End Time All Day - Formatted",
+      "subfieldPath": [
+        {
+          "name": "end"
+        }
+      ]
     }
   ],
   "scheduleConfig": {
