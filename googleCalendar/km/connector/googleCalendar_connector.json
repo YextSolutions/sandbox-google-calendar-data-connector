@@ -1,6 +1,6 @@
 {
   "$id": "googleCalendar_connector",
-  "$schema": "https://schema.yext.com/config/km/connector/v1",
+  "$schema": "https://schema.yext.com/config/km/connector/v2",
   "displayName": "Google Calendar Events Connector",
   "entityType": "event",
   "source": {
