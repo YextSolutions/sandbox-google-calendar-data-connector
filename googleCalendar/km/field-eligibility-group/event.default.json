@@ -1,0 +1,17 @@
+{
+  "$id": "event.default",
+  "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
+  "name": "Event-default",
+  "entityType": "event",
+  "fields": [
+    "googleCalendar_calendarID",
+    "googleCalendar_calendarName",
+    "googleCalendar_calendarTimezone",
+    "googleCalendar_color",
+    "googleCalendar_creatorEmail",
+    "googleCalendar_creatorName",
+    "googleCalendar_meetingLink",
+    "googleCalendar_meetingPhoneNumber",
+    "googleCalendar_meetingType"
+  ]
+}
