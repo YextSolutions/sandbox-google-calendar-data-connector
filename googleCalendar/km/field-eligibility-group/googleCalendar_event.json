@@ -1,7 +1,7 @@
 {
-  "$id": "event.default",
+  "$id": "googleCalendar_event",
   "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
-  "name": "Event-default",
+  "name": "Google Calendar Event",
   "entityType": "event",
   "fields": [
     "googleCalendar_calendarID",
