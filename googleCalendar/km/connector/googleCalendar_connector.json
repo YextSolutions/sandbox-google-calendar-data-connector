@@ -1,262 +1,267 @@
 {
-  "$id": "googleCalendar_connector",
-  "$schema": "https://schema.yext.com/config/km/connector/v2",
-  "displayName": "Google Calendar Events Connector",
-  "entityType": "event",
-  "source": {
-    "sourceConfig": {
-      "apiPushConfig": {
-        "app": "122501",
-        "dataFormat": "JSON",
-        "enabled": true
-      }
-    },
-    "baseSelector": {
-      "type": "JSON",
-      "header": "Entity Container",
-      "path": "items"
-    },
-    "selectors": [
-      {
-        "type": "JSON",
-        "header": "Event Name",
-        "path": "summary"
-      },
-      {
-        "type": "JSON",
-        "header": "Entity ID",
-        "path": "id"
-      },
-      {
-        "type": "JSON",
-        "header": "Start Time",
-        "path": "start.dateTime"
-      },
-      {
-        "type": "JSON",
-        "header": "End Time",
-        "path": "end.dateTime"
-      },
-      {
-        "type": "JSON",
-        "header": "Location",
-        "path": "location"
-      },
-      {
-        "type": "JSON",
-        "header": "Start Time All Day",
-        "path": "start.date"
-      },
-      {
-        "type": "JSON",
-        "header": "End Time All Day",
-        "path": "end.date"
-      },
-      {
-        "type": "JSON",
-        "header": "Description",
-        "path": "description"
-      },
-      {
-        "type": "JSON",
-        "header": "Event Link",
-        "path": "htmlLink"
-      },
-      {
-        "type": "JSON",
-        "header": "Color",
-        "path": "colorId"
-      },
-      {
-        "type": "JSON",
-        "header": "Creator Name",
-        "path": "creator.displayName"
-      },
-      {
-        "type": "JSON",
-        "header": "Creator Email",
-        "path": "creator.email"
-      },
-      {
-        "type": "JSON",
-        "header": "Organizer Name",
-        "path": "organizer.displayName"
-      },
-      {
-        "type": "JSON",
-        "header": "Organizer Email",
-        "path": "organizer.email"
-      },
-      {
-        "type": "JSON",
-        "header": "Conference Type",
-        "path": "conferenceData.conferenceSolution.name"
-      },
-      {
-        "type": "JSON",
-        "header": "Conference Link",
-        "path": "conferenceData.entryPoints[? entryPointType \u003d\u003d \u0027video\u0027].uri"
-      },
-      {
-        "type": "JSON",
-        "header": "Conference Phone Number",
-        "path": "conferenceData.entryPoints[? entryPointType \u003d\u003d \u0027phone\u0027].uri"
-      },
-      {
-        "type": "JSON",
-        "header": "Time Zone",
-        "path": "start.timeZone"
-      }
-    ]
-  },
-  "transforms": [
-    {
-      "addColumn": {
-        "newColumnHeader": "Midnight Timestamp",
-        "columnValue": "T00:00"
-      }
-    },
-    {
-      "function": {
-        "inputHeaders": {
-          "headers": [
-            "Start Time",
-            "End Time"
-          ]
+    "$id": "googleCalendar_connector",
+    "$schema": "https://schema.yext.com/config/km/connector/v4",
+    "displayName": "Google Calendar Events Connector",
+    "entityTypes": [
+        "event"
+    ],
+    "source": {
+        "sourceConfig": {
+            "apiPushConfig": {
+                "dataFormat": "JSON",
+                "enabled": true
+            }
         },
-        "plugin": "formatDates",
-        "function": "formatDate"
-      }
+        "baseSelector": {
+            "type": "JSON",
+            "header": "Entity Container",
+            "path": "items"
+        },
+        "selectors": [
+            {
+                "type": "JSON",
+                "header": "Event Name",
+                "path": "summary"
+            },
+            {
+                "type": "JSON",
+                "header": "Entity ID",
+                "path": "id"
+            },
+            {
+                "type": "JSON",
+                "header": "Start Time",
+                "path": "start.dateTime"
+            },
+            {
+                "type": "JSON",
+                "header": "End Time",
+                "path": "end.dateTime"
+            },
+            {
+                "type": "JSON",
+                "header": "Location",
+                "path": "location"
+            },
+            {
+                "type": "JSON",
+                "header": "Start Time All Day",
+                "path": "start.date"
+            },
+            {
+                "type": "JSON",
+                "header": "End Time All Day",
+                "path": "end.date"
+            },
+            {
+                "type": "JSON",
+                "header": "Description",
+                "path": "description"
+            },
+            {
+                "type": "JSON",
+                "header": "Event Link",
+                "path": "htmlLink"
+            },
+            {
+                "type": "JSON",
+                "header": "Color",
+                "path": "colorId"
+            },
+            {
+                "type": "JSON",
+                "header": "Creator Name",
+                "path": "creator.displayName"
+            },
+            {
+                "type": "JSON",
+                "header": "Creator Email",
+                "path": "creator.email"
+            },
+            {
+                "type": "JSON",
+                "header": "Organizer Name",
+                "path": "organizer.displayName"
+            },
+            {
+                "type": "JSON",
+                "header": "Organizer Email",
+                "path": "organizer.email"
+            },
+            {
+                "type": "JSON",
+                "header": "Conference Type",
+                "path": "conferenceData.conferenceSolution.name"
+            },
+            {
+                "type": "JSON",
+                "header": "Conference Link",
+                "path": "conferenceData.entryPoints[? entryPointType == 'video'].uri"
+            },
+            {
+                "type": "JSON",
+                "header": "Conference Phone Number",
+                "path": "conferenceData.entryPoints[? entryPointType == 'phone'].uri"
+            },
+            {
+                "type": "JSON",
+                "header": "Time Zone",
+                "path": "start.timeZone"
+            }
+        ]
     },
-    {
-      "mergeColumns": {
-        "inputHeaders": [
-          "Start Time",
-          "Start Time All Day",
-          "Midnight Timestamp"
-        ],
-        "newColumnHeader": "Start Time All Day - Combined",
-        "delimiter": ""
-      }
-    },
-    {
-      "mergeColumns": {
-        "inputHeaders": [
-          "End Time",
-          "End Time All Day",
-          "Midnight Timestamp"
-        ],
-        "newColumnHeader": "End Time All Day - Combined",
-        "delimiter": ""
-      }
-    },
-    {
-      "extractText": {
-        "inputHeader": "Start Time All Day - Combined",
-        "newColumnHeader": "Start Time All Day - Formatted",
-        "extractOperation": "ALL_TEXT_BEFORE",
-        "extractFrom": "OFFSET_FROM_BEGINNING",
-        "offsetLength": 16
-      }
-    },
-    {
-      "extractText": {
-        "inputHeader": "End Time All Day - Combined",
-        "newColumnHeader": "End Time All Day - Formatted",
-        "extractOperation": "ALL_TEXT_BEFORE",
-        "extractFrom": "OFFSET_FROM_BEGINNING",
-        "offsetLength": 16
-      }
-    }
-  ],
-  "mappings": [
-    {
-      "field": "timezone",
-      "header": "Time Zone",
-      "subfieldPath": []
-    },
-    {
-      "field": "description",
-      "header": "Description",
-      "subfieldPath": []
-    },
-    {
-      "field": "name",
-      "header": "Event Name",
-      "subfieldPath": []
-    },
-    {
-      "field": "googleCalendar_color",
-      "header": "Color",
-      "subfieldPath": []
-    },
-    {
-      "field": "googleCalendar_meetingPhoneNumber",
-      "header": "Conference Phone Number",
-      "subfieldPath": []
-    },
-    {
-      "field": "googleCalendar_creatorEmail",
-      "header": "Creator Email",
-      "subfieldPath": []
-    },
-    {
-      "field": "organizerEmail",
-      "header": "Organizer Email",
-      "subfieldPath": []
-    },
-    {
-      "field": "landingPageUrl",
-      "header": "Event Link",
-      "subfieldPath": []
-    },
-    {
-      "field": "entityId",
-      "header": "Entity ID",
-      "subfieldPath": []
-    },
-    {
-      "field": "googleCalendar_creatorName",
-      "header": "Creator Name",
-      "subfieldPath": []
-    },
-    {
-      "field": "googleCalendar_meetingType",
-      "header": "Conference Type",
-      "subfieldPath": []
-    },
-    {
-      "field": "googleCalendar_meetingLink",
-      "header": "Conference Link",
-      "subfieldPath": []
-    },
-    {
-      "field": "organizerName",
-      "header": "Organizer Name",
-      "subfieldPath": []
-    },
-    {
-      "field": "venueName",
-      "header": "Location",
-      "subfieldPath": []
-    },
-    {
-      "field": "time",
-      "header": "Start Time All Day - Formatted",
-      "subfieldPath": [
+    "transforms": [
         {
-          "name": "start"
-        }
-      ]
-    },
-    {
-      "field": "time",
-      "header": "End Time All Day - Formatted",
-      "subfieldPath": [
+            "addColumn": {
+                "newColumnHeader": "Midnight Timestamp",
+                "columnValue": "T00:00"
+            }
+        },
         {
-          "name": "end"
+            "function": {
+                "inputHeaders": {
+                    "headers": [
+                        "Start Time",
+                        "End Time"
+                    ]
+                },
+                "plugin": "formatDates",
+                "function": "formatDate"
+            }
+        },
+        {
+            "mergeColumns": {
+                "inputHeaders": [
+                    "Start Time",
+                    "Start Time All Day",
+                    "Midnight Timestamp"
+                ],
+                "newColumnHeader": "Start Time All Day - Combined",
+                "delimiter": ""
+            }
+        },
+        {
+            "mergeColumns": {
+                "inputHeaders": [
+                    "End Time",
+                    "End Time All Day",
+                    "Midnight Timestamp"
+                ],
+                "newColumnHeader": "End Time All Day - Combined",
+                "delimiter": ""
+            }
+        },
+        {
+            "extractText": {
+                "inputHeader": "Start Time All Day - Combined",
+                "newColumnHeader": "Start Time All Day - Formatted",
+                "extractOperation": "ALL_TEXT_BEFORE",
+                "extractFrom": "OFFSET_FROM_BEGINNING",
+                "offsetLength": 16
+            }
+        },
+        {
+            "extractText": {
+                "inputHeader": "End Time All Day - Combined",
+                "newColumnHeader": "End Time All Day - Formatted",
+                "extractOperation": "ALL_TEXT_BEFORE",
+                "extractFrom": "OFFSET_FROM_BEGINNING",
+                "offsetLength": 16
+            }
         }
-      ]
+    ],
+    "mappings": [
+        {
+            "field": "timezone",
+            "header": "Time Zone",
+            "subfieldPath": []
+        },
+        {
+            "field": "description",
+            "header": "Description",
+            "subfieldPath": []
+        },
+        {
+            "field": "name",
+            "header": "Event Name",
+            "subfieldPath": []
+        },
+        {
+            "field": "googleCalendar_color",
+            "header": "Color",
+            "subfieldPath": []
+        },
+        {
+            "field": "googleCalendar_meetingPhoneNumber",
+            "header": "Conference Phone Number",
+            "subfieldPath": []
+        },
+        {
+            "field": "googleCalendar_creatorEmail",
+            "header": "Creator Email",
+            "subfieldPath": []
+        },
+        {
+            "field": "organizerEmail",
+            "header": "Organizer Email",
+            "subfieldPath": []
+        },
+        {
+            "field": "landingPageUrl",
+            "header": "Event Link",
+            "subfieldPath": []
+        },
+        {
+            "field": "entityId",
+            "header": "Entity ID",
+            "subfieldPath": []
+        },
+        {
+            "field": "googleCalendar_creatorName",
+            "header": "Creator Name",
+            "subfieldPath": []
+        },
+        {
+            "field": "googleCalendar_meetingType",
+            "header": "Conference Type",
+            "subfieldPath": []
+        },
+        {
+            "field": "googleCalendar_meetingLink",
+            "header": "Conference Link",
+            "subfieldPath": []
+        },
+        {
+            "field": "organizerName",
+            "header": "Organizer Name",
+            "subfieldPath": []
+        },
+        {
+            "field": "venueName",
+            "header": "Location",
+            "subfieldPath": []
+        },
+        {
+            "field": "time",
+            "header": "Start Time All Day - Formatted",
+            "subfieldPath": [
+                {
+                    "name": "start"
+                }
+            ]
+        },
+        {
+            "field": "time",
+            "header": "End Time All Day - Formatted",
+            "subfieldPath": [
+                {
+                    "name": "end"
+                }
+            ]
+        }
+    ],
+    "comprehensiveModeConfig": {
+        "comprehensiveSet": "ENTITIES_CREATED_BY_THIS_CONNECTOR",
+        "actionOnMissingEntities": "DELETE"
     }
-  ]
 }
